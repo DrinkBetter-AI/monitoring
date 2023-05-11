@@ -1,0 +1,28 @@
+version: '3'
+services:
+  wine-grafana:
+    image: grafana/grafana-enterprise
+    container_name: wine-grafana
+    hostname: grafana
+    ports:
+      - 3000:3000
+    networks:
+      wr_network:
+        aliases:
+          - winegrafana
+
+  wine-prom:
+    image: prom/prometheus
+    container_name: wine-prom
+    hostname: prom
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      wr_network:
+        aliases:
+          - wineprometheus
+
+networks:
+  wr_network:
