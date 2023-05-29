@@ -6,6 +6,8 @@ services:
     hostname: grafana
     ports:
       - 3000:3000
+    volumes:
+      - ${GRAFANA_DATA_PATH}:/var/lib/grafana
     networks:
       wr_network:
         aliases:
@@ -19,6 +21,7 @@ services:
       - 9090:9090
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ${PROM_DATA_PATH}:/prometheus
     networks:
       wr_network:
         aliases:
@@ -26,3 +29,5 @@ services:
 
 networks:
   wr_network:
+    external:
+      name: wr_network

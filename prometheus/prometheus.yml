@@ -28,8 +28,15 @@ scrape_configs:
     static_configs:
       - targets: ["127.0.0.1:9090"]
 
-  # - job_name: fastapi-app
-  #   static_configs:
-  #     - targets: ['172.17.0.5:8000']
+  - job_name: backend-watch-cap
+    static_configs:
+      - targets: ['test.vinovoss.com']
 
+  - job_name: backend-watch-prod
+    static_configs:
+      - targets: ["{{ .Env.PROD_SERVER_API }}"]
+
+  - job_name: backend-watch-same-network
+    static_configs:
+      - targets: ['backend']
       
