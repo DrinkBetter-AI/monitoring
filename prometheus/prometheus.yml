@@ -30,7 +30,7 @@ scrape_configs:
 
   - job_name: backend-watch-cap
     static_configs:
-      - targets: ['test.vinovoss.com']
+      - targets: ['{{ .Env.DEV_SERVER_API }}']
 
   - job_name: backend-watch-prod
     static_configs:
